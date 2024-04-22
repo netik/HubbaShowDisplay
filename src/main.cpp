@@ -13,7 +13,6 @@
 #include <AppleMIDI.h>
 
 #include "safe_strlen.h"
-#include "buttondefs.h"
 #include "button_handler.h"
 #include "settings.h"
 
