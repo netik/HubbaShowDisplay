@@ -4,7 +4,10 @@ An ESP8266/Arduino hardware project which can send OSC messages, receive and dis
 This is built on the NodeMCU / Ai-Thinker ESP8266 12-E Board, which you can buy on Amazon. There are so many clones of this but they all work. 
 https://www.amazon.com/HiLetgo-Internet-Development-Wireless-Micropython/dp/B010O1G1ES
 
-It also requires a 8 segment display based on the MAX 7219. A suitable one is here:
+It also requires a 8 segment display based on the MAX 7219. 
+
+A suitable one is here:
+https://www.amazon.com/MAX7219-8-Digital-7-Segment-Display-Raspberry/dp/B086GKV958
 
 Schematics are coming soon, I need to draw them up. Right now the connections between the ESP8266 and display are as follows:
 
