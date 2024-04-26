@@ -172,6 +172,7 @@ void networkInit()
   IPAddress ip = WiFi.localIP();
   DBG("IP address is " + ip.toString());
   ledShowIP(ip);
+  ledShowString("ready   ");
 }
 
 
@@ -223,10 +224,7 @@ void dumpFiles()
 void setup()
 {
   DBG_SETUP(115200);
-
   LittleFS.begin();
-  dumpFiles();
-
   ledInit();
   networkInit();
 
