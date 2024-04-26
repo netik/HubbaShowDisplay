@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Node Setup</title>
+  <style>
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 20px;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+        "Liberation Sans";
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #f5f5f5;
+    }
+
+    .form-control {
+      display: block;
+      width: 100%%;
+      height: calc(1.5em + 0.75rem + 2px);
+      border: 1px solid #ced4da;
+    }
+
+    .form-dual-control {
+      display: block;
+      float: left;
+      width: 50%%;
+      height: calc(1.5em + 0.75rem + 2px);
+      border: 1px solid #ced4da;
+    }
+
+    button {
+      cursor: pointer;
+      border: 1px solid transparent;
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      border-radius: 0.3rem;
+      width: 100%%;
+    }
+
+    .form-signin {
+      width: 100%%;
+      max-width: 400px;
+      padding: 15px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="form-signin">
+    <form action="/" method="post">
+      <h1 class="">Node Setup</h1>
+      <br />
+      <div class="form-floating">
+        <label>SSID</label><input type="text" class="form-control" name="ssid" value="%SSID%" />
+      </div>
+      <div class="form-floating">
+        <!-- passwords will never be sent back in the clear -->
+        <br /><label>Password</label><input type="password" class="form-control" name="password" value="%PASSWORD%"/>
+      </div>
+      <div class="form-floating">
+        <br /><label>OSC Destination Address</label><input type="text" class="form-control" name="osc_address" value="%OSC_ADDRESS%"/>
+      </div>
+      <div class="form-floating">
+        <br /><label>OSC Destination Port</label><input type="text" class="form-control" name="osc_port" value="%OSC_PORT%"/>
+      </div>
+      <div class="form-floating">
+        <br /><label>OSC Button 1 Address and Message</label>
+        <input type="text" class="form-dual-control" name="osc_message1" value="%OSC_MESSAGE1%"/>
+        <input type="text" class="form-dual-control" name="osc_data1" value="%OSC_DATA1%"/>
+      </div>
+
+      <div class="form-floating">
+        <br /><label>OSC Buttom 2 Address and Message</label>
+        <input type="text" class="form-dual-control" name="osc_message2" value="%OSC_MESSAGE2%" />
+        <input type="text" class="form-dual-control" name="osc_data2" value="%OSC_DATA2%"/>
+      </div>
+
+      <div class="form-floating">
+        <br /><label>OSC Buttom 3 Address and Message</label>
+        <input type="text" class="form-dual-control" name="osc_message3" value="%OSC_MESSAGE3%" />
+        <input type="text" class="form-dual-control" name="osc_data3" value="%OSC_DATA3%"/>
+      </div>
+
+      <br />
+      <br />
+      <button type="submit">Save</button>
+
+    </form>
+  </main>
+</body>
+
+</html>
