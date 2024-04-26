@@ -10,7 +10,9 @@
 #include <ESPAsyncWebServer.h>
 #include <LedController.hpp>
 
+// AppleMIDI
 #define USE_EXT_CALLBACKS 1
+
 #include <AppleMIDI.h>
 
 #include "led.h"
@@ -19,20 +21,7 @@
 #include "settings.h"
 #include "LittleFS.h"
 #include "pins.h"
-
-#define DEBUG 1 // SET TO 0 OUT TO REMOVE TRACES
-
-#if DEBUG
-#define DBG_SETUP(...) Serial.begin(__VA_ARGS__);
-#define DBG_PRINT(...) Serial.print(__VA_ARGS__)
-#define DBG_WRITE(...) Serial.write(__VA_ARGS__)
-#define DBG(...) Serial.println(__VA_ARGS__)
-#else
-#define DBG_SETUP(...)
-#define DBG_PRINT(...)
-#define DBG_WRITE(...)
-#define DBG(...)
-#endif
+#include "debug.h"
 
 /* Web server */
 AsyncWebServer server(80);

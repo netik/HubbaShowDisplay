@@ -1,31 +1,22 @@
 #pragma once
+#include <Arduino.h>
 
-#ifdef SerialMon
+// we're using NODE_DEBUG here instead of DEBUG as that 
+// triggers a lot of problems in the Apple Midi library :()
+#define NODE_DEBUG 1
 
-static void AM_DBG_SETUP(unsigned long baud) {
-  SerialMon.begin(baud);
-  while (!SerialMon);
-}
-
-template <typename T>
-static void AM_DBG_PLAIN(T last) {
-  SerialMon.println(last);
-}
-
-template <typename T, typename... Args>
-static void AM_DBG_PLAIN(T head, Args... tail) {
-  SerialMon.print(head);
-  SerialMon.print(' ');
-  AM_DBG_PLAIN(tail...);
-}
-
-template <typename... Args>
-static void AM_DBG(Args... args) {
-  AM_DBG_PLAIN(args...);
-}
-
+#if NODE_DEBUG
+#define DBG_SETUP(...) Serial.begin(__VA_ARGS__)
+#define DBG_PRINT(...) Serial.print(__VA_ARGS__)
+#define DBG_WRITE(...) Serial.write(__VA_ARGS__)
+#define DBG(...) Serial.println(__VA_ARGS__)
 #else
+#define DBG_SETUP(...)
+#define DBG_PRINT(...)
+#define DBG_WRITE(...)
+#define DBG(...)
+#endif
+
 #define AM_DBG_SETUP(...)
 #define AM_DBG_PLAIN(...)
 #define AM_DBG(...)
-#endif

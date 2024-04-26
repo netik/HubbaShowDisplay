@@ -21,14 +21,23 @@ String configFormProcessor(const String &var)
   if (var == "OSC_PORT")
     return String(user_config.osc_port);
 
-  if (var == "OSC_BUTTON1")
-    return String(user_config.osc_button1);
+  if (var == "OSC_MESSAGE1")
+    return String(user_config.osc_message1);
 
-  if (var == "OSC_BUTTON2")
-    return String(user_config.osc_button2);
+  if (var == "OSC_MESSAGE2")
+    return String(user_config.osc_message2);
 
-  if (var == "OSC_BUTTON3")
-    return String(user_config.osc_button3);
+  if (var == "OSC_MESSAGE3")
+    return String(user_config.osc_message3);
+
+  if (var == "OSC_DATA1")
+    return String(user_config.osc_data1);
+
+  if (var == "OSC_DATA2")
+    return String(user_config.osc_data2);
+
+  if (var == "OSC_DATA3")
+    return String(user_config.osc_data3);
 
   return String();
 }
@@ -42,9 +51,12 @@ void handleUpdateConfig(AsyncWebServerRequest *request)
   String password;
   String osc_address;
   String osc_port;
-  String osc_button1;
-  String osc_button2;
-  String osc_button3;
+  String osc_message1;
+  String osc_message2;
+  String osc_message3;
+  String osc_data1;
+  String osc_data2;
+  String osc_data3;
 
   if (request->hasParam("ssid", true))
   {
@@ -70,23 +82,43 @@ void handleUpdateConfig(AsyncWebServerRequest *request)
     user_config.osc_port = osc_port.toInt();
   }
 
-  if (request->hasParam("osc_button1", true))
+  if (request->hasParam("osc_message1", true))
   {
-    String osc_button1 = request->getParam("osc_button1", true)->value();
-    strncpy(user_config.osc_button1, osc_button1.c_str(), sizeof(user_config.osc_button1));
+    String osc_message1 = request->getParam("osc_message1", true)->value();
+    strncpy(user_config.osc_message1, osc_message1.c_str(), sizeof(user_config.osc_message1));
   }
 
-  if (request->hasParam("osc_button2", true))
+  if (request->hasParam("osc_message2", true))
   {
-    String osc_button2 = request->getParam("osc_button2", true)->value();
-    strncpy(user_config.osc_button2, osc_button2.c_str(), sizeof(user_config.osc_button2));
+    String osc_message2 = request->getParam("osc_message2", true)->value();
+    strncpy(user_config.osc_message2, osc_message2.c_str(), sizeof(user_config.osc_message2));
   }
 
-  if (request->hasParam("osc_button3", true))
+  if (request->hasParam("osc_message3", true))
   {
-    String osc_button3 = request->getParam("osc_button3", true)->value();
-    strncpy(user_config.osc_button3, osc_button3.c_str(), sizeof(user_config.osc_button3));
+    String osc_message3 = request->getParam("osc_message3", true)->value();
+    strncpy(user_config.osc_message3, osc_message3.c_str(), sizeof(user_config.osc_message3));
   }
+
+  if (request->hasParam("osc_data1", true))
+  {
+    String osc_data1 = request->getParam("osc_data1", true)->value();
+    strncpy(user_config.osc_data1, osc_data1.c_str(), sizeof(user_config.osc_data1));
+  }
+
+  if (request->hasParam("osc_data2", true))
+  {
+    String osc_data2 = request->getParam("osc_data2", true)->value();
+    strncpy(user_config.osc_data2, osc_data2.c_str(), sizeof(user_config.osc_data2));
+  }
+
+  if (request->hasParam("osc_data3", true))
+  {
+    String osc_data3 = request->getParam("osc_data3", true)->value();
+    strncpy(user_config.osc_data3, osc_data3.c_str(), sizeof(user_config.osc_data3));
+  }
+
+  user_config.cstr_terminator = 0;
 
   DBG(user_config.osc_port);
 

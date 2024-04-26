@@ -41,7 +41,7 @@ void button1Handler(uint8_t pin, uint8_t event, uint8_t count, uint16_t length)
 
     if (event == 3)
     {
-        sendOscMessage("/setcolorhex", "ff0000");
+        sendOscMessage(user_config.osc_message1, "ff0000");
     }
 }
 
@@ -57,7 +57,7 @@ void button2Handler(uint8_t pin, uint8_t event, uint8_t count, uint16_t length)
 
     if (event == 3)
     {
-        sendOscMessage("/setcolorhex", "ffff00");
+        sendOscMessage(user_config.osc_message2, "ff0000");
     }
 }
 
@@ -73,6 +73,6 @@ void button3Handler(uint8_t pin, uint8_t event, uint8_t count, uint16_t length)
 
     if (event == 3)
     {
-        sendOscMessage("/setcolorhex", "00ff00");
+         sendOscMessage(user_config.osc_message3, "ff0000");
     }
 }

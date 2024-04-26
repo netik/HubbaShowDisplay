@@ -75,7 +75,7 @@ private:
     uint8_t * incomingBuffer;
 
     // jna make these 32 bit 
-	uint32_t incomingBufferSize; // how many bytes are stored
+	  uint32_t incomingBufferSize; // how many bytes are stored
     uint32_t incomingBufferFree; // how many bytes are allocated but unused
     
     //adds a byte to the buffer
