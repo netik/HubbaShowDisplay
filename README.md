@@ -11,16 +11,23 @@ https://www.amazon.com/MAX7219-8-Digital-7-Segment-Display-Raspberry/dp/B086GKV9
 
 Schematics are coming soon, I need to draw them up. Right now the connections between the ESP8266 and display are as follows:
 
+# Pinouts
+
+There are three pings required for the LED
+The LED display connects to VCC (3.3v) and Ground, and data pins:
+
+#define LED_CLK_PIN D5
+#define LED_DATA_PIN D6
+#define LED_CS_PIN D7
+
+Three buttons are used to send OSC commands. 
 Three buttons, connected to ground and the following pins:
 
 #define BUTTON_RED D0    // gpio 16, internal pull up
 #define BUTTON_YELLOW D1 // gpio 5, internal pull up
 #define BUTTON_GREEN D2  // gpio 4, internal pull up
 
-LED display connects to VCC (3.3v) Ground, these pins:
 
-#define LED_CLK_PIN D5
-#define LED_DATA_PIN D6
-#define LED_CS_PIN D7
-
-
+## Web server
+In order for the config webserver to work you must upload config.html and done.html into ESP Flash.
+PlatformIO can do this via "Upload FileSystem Image"
