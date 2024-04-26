@@ -5,6 +5,13 @@
 
 LedController ledController(LED_DATA_PIN, LED_CLK_PIN, LED_CS_PIN, LED_NUM_SEGMENTS);
 
+void ledInit()
+{
+  ledController.activateAllSegments();
+  ledController.setIntensity(15);
+  ledController.clearMatrix();
+}
+
 void ledShowString(const char *str)
 {
   // display a short string on the LED

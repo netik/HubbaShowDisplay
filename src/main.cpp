@@ -1,6 +1,4 @@
 #include <Arduino.h>
-
-// These need to be included when using standard Ethernet
 #include <ESP8266WiFi.h>
 #include <EEPROM.h>
 #include <WiFiUDP.h>
@@ -12,7 +10,6 @@
 
 // AppleMIDI
 #define USE_EXT_CALLBACKS 1
-
 #include <AppleMIDI.h>
 
 #include "led.h"
@@ -35,8 +32,6 @@ extern LedController ledController;
 #define APSSID "HubbaShowNode"
 #define APPSK "" // no password
 #endif
-
-/* Set these to your desired credentials. */
 const char *AP_ssid = APSSID;
 const char *AP_password = APPSK;
 
@@ -49,13 +44,13 @@ bool AP_enabled = false;
 
 SETTINGS_T user_config = {};
 
+/* Button Handlers */
 DebounceEvent buttonRed = DebounceEvent(BUTTON_RED, button1Handler, BUTTON_PUSHBUTTON | BUTTON_DEFAULT_HIGH | BUTTON_SET_PULLUP);
 DebounceEvent buttonYel = DebounceEvent(BUTTON_YELLOW, button2Handler, BUTTON_PUSHBUTTON | BUTTON_DEFAULT_HIGH | BUTTON_SET_PULLUP);
 DebounceEvent buttonGrn = DebounceEvent(BUTTON_GREEN, button3Handler, BUTTON_PUSHBUTTON | BUTTON_DEFAULT_HIGH | BUTTON_SET_PULLUP);
 
-APPLEMIDI_CREATE_DEFAULTSESSION_INSTANCE();
-
-struct
+/* Timecode */
+struct TIMECODE
 {
   byte frame_ls;
   byte frame_ms;
@@ -66,6 +61,9 @@ struct
   byte hours_ls;
   byte hours_ms;
 } timeCode;
+
+/* Start Apple MIDI */
+APPLEMIDI_CREATE_DEFAULTSESSION_INSTANCE();
 
 void notFound(AsyncWebServerRequest *request)
 {
@@ -176,12 +174,6 @@ void networkInit()
   ledShowIP(ip);
 }
 
-void ledInit()
-{
-  ledController.activateAllSegments();
-  ledController.setIntensity(15);
-  ledController.clearMatrix();
-}
 
 int isConnected = 0;
 
@@ -217,16 +209,8 @@ void displayTimeCode()
   ledShowString(timeCodeStr);
 }
 
-String processor(const String &var)
-{
-  Serial.println(var);
-  // FIX ME
-  return String("XXX");
-}
-
 void dumpFiles()
 {
-
   Serial.println("File list: ");
   Dir dir = LittleFS.openDir("/");
   while (dir.next())
@@ -256,6 +240,7 @@ void setup()
               request->send(LittleFS, "/done.html", "text/html", false, nullptr);
             });
 
+  server.onNotFound(notFound);
   server.begin();
 
   // Anything requiring the network to be up, should go below this conditional.
